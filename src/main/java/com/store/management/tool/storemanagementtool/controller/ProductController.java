@@ -2,6 +2,7 @@ package com.store.management.tool.storemanagementtool.controller;
 
 import com.store.management.tool.storemanagementtool.entity.Product;
 import com.store.management.tool.storemanagementtool.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -27,18 +27,23 @@ public class ProductController {
         return service.getProducts();
     }
 
-    @PostMapping("/insert")
-    public Product addProduct(@RequestBody Product product) {
-        return service.addProduct(product);
-    }
-
-    @GetMapping()
-    public List<Product> getProductsByCategory(@RequestParam("category") String category) {
+    @GetMapping("/category/{category}")
+    public List<Product> getProductsByCategory(@PathVariable String category) {
         return service.getProductsByCategory(category);
     }
 
+    @GetMapping("/id/{id}")
+    public Product getProductBId(@PathVariable Integer id) {
+        return service.getProductById(id);
+    }
+
+    @PostMapping("/insert")
+    public Product addProduct(@RequestBody @Valid Product product) {
+        return service.addProduct(product);
+    }
+
     @PutMapping("/{id}")
-    Product updateProduct(@RequestBody Product newProduct, @PathVariable Integer id) {
+    public Product updateProduct(@RequestBody @Valid Product newProduct, @PathVariable Integer id) {
         return service.updateProduct(newProduct, id);
     }
 

@@ -19,13 +19,17 @@ public class ProductService {
         return repository.findAll();
     }
 
-    public Product addProduct(Product product) {
-        return repository.save(product);
-    }
-
     public List<Product> getProductsByCategory(String category) {
         if (!category.matches("[a-zA-Z]+")) throw new ProductMalformatException(category);
         return repository.getProductsByCategory(category);
+    }
+
+    public Product getProductById(Integer id) {
+        return repository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+    }
+
+    public Product addProduct(Product product) {
+        return repository.save(product);
     }
 
     public Product updateProduct(Product newProduct, Integer id) {
@@ -36,14 +40,14 @@ public class ProductService {
                 }).orElseThrow(() -> new ProductNotFoundException(id));
     }
 
+    public void deleteById(Integer id) {
+        repository.deleteById(id);
+    }
+
     private void buildProduct(Product newProduct, Product product) {
         product.setCategory(newProduct.getCategory());
         product.setDescription(newProduct.getDescription());
         product.setPrice(newProduct.getPrice());
         product.setName(newProduct.getName());
-    }
-
-    public void deleteById(Integer id) {
-        repository.deleteById(id);
     }
 }
