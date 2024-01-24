@@ -1,0 +1,14 @@
+version: "5"
+services:
+  mongo-db:
+    image: mongo:latest
+    container_name: "mongo-db"
+    ports:
+      - 27017:27017
+  storemanagementtool:
+    image: storemanagementtool:latest
+    container_name: "storemanagementtool"
+    ports:
+      - 9090:8090
+    links:
+      - mongo-db
