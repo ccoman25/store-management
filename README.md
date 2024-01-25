@@ -16,10 +16,11 @@ Source code: `https://github.com/ccoman25/store-management`
 * #### Error handling mechanism
  The main objective of this mechanism is to provide a means to detect and report an error so that the program can either handle it and continue or terminate gracefully.
 In this API the following errors were handled:
-* MethodArgumentNotValidException
-* HttpMessageNotReadableException
-* ProductNotFoundException
-* ProductMalformatException
+
+1. MethodArgumentNotValidException
+2. HttpMessageNotReadableException
+3. ProductNotFoundException
+4. ProductMalformatException
 
 Class `GlobalExceptionHandler` handles those exceptions. It expose a clear message to the client when something unexpected occurred.
 
@@ -107,15 +108,15 @@ Response body: A token
 * #### Run and deploy the Store Management Tool Application
 The Docker is used for creating containers for MongoDB and Store Management Application.
 Steps to run the app:
-* install docker compose
-* Create Dockerfile - jar app info
-* Create docker-compose.yml
-  * mongo-db container
-  * storemanagementtool container
-* Pull the latest mongo image: `docker pull mongo`
-* Build application: `mvn clean install`
-* Create Store Mng Tool image: `docker build -t storemanagementtool .`
-* Run docker compose: `docker compose up`
+1. install docker compose
+2. Create Dockerfile - jar app info
+3. Create docker-compose.yml
+   * mongo-db container
+   * storemanagementtool container
+4. Pull the latest mongo image: `docker pull mongo`
+5. Build application: `mvn clean install`
+6. Create Store Mng Tool image: `docker build -t storemanagementtool .`
+7. Run docker compose: `docker compose up`
 
 The endpoints can be accessed inside container using port `9090` or outside the container using port `8090`
 ```
