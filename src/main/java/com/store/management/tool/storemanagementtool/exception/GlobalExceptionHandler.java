@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(ProductService.class);
 
-    public static final String ERROR_MESSAGE = "Validation error. Check 'errors' field for details.";
+    public static final String ERROR_MESSAGE = "Validation failed";
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
