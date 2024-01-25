@@ -3,9 +3,9 @@ API that acts as a store management tool.
 
 Source code: `https://github.com/ccoman25/store-management`
 
-###Futures
+### Futures
 
-* ####API endpoints:
+* #### API endpoints:
   * Get products from store `[GET] http://host:port/api/product/findAll`
   * Find by category `[GET] http://host:port/api/product/category/{category_name}`
   * Find by id `[GET] http://host:port/api/product/id/{id}`
@@ -13,7 +13,7 @@ Source code: `https://github.com/ccoman25/store-management`
   * Update product `[PUT] http://host:port/api/product/{id}`
   * Delete product `[DELETE] http://host:port/api/product/{id}`
   
-* ####Error handling mechanism
+* #### Error handling mechanism
  The main objective of this mechanism is to provide a means to detect and report an error so that the program can either handle it and continue or terminate gracefully.
 In this API the following errors were handled:
 * MethodArgumentNotValidException
@@ -68,12 +68,12 @@ Response body:
 }
 ```
 
-* ####Logging
+* #### Logging
 The logging mechanism was implemented using SLf4j and Logback.
 The logs are redirected through console and a file if the application is running outside of a container,
 otherwise the logs will be redirected to the console (`logback.xml`)
 
-* ####Basic authentication mechanism and role based endpoint access
+* #### Basic authentication mechanism and role based endpoint access
 1. Libraries: spring-boot-starter-security 3.2.2 
 2. Generate token:
 
