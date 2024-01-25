@@ -1,5 +1,8 @@
 package com.store.management.tool.storemanagementtool.exception;
 
+import com.store.management.tool.storemanagementtool.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -12,16 +15,20 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ProductService.class);
+
     public static final String ERROR_MESSAGE = "Validation error. Check 'errors' field for details.";
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValid(MethodArgumentNotValidException exception) {
+        LOG.error(exception.getLocalizedMessage());
+
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.UNPROCESSABLE_ENTITY.value(),
                 ERROR_MESSAGE);
 
-        for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
+        for (FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
             errorResponse.addValidationError(fieldError.getField(),
                     fieldError.getDefaultMessage());
         }
@@ -31,6 +38,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
     public ResponseEntity<ErrorResponse> handleHttpMessageNotReadable(HttpMessageNotReadableException exception) {
+        LOG.error(exception.getLocalizedMessage());
+
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.UNPROCESSABLE_ENTITY.value(),
                 ERROR_MESSAGE);
@@ -42,6 +51,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ProductNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorResponse> handleHttpNotFound(ProductNotFoundException exception) {
+        LOG.error(exception.getLocalizedMessage());
+
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
                 ERROR_MESSAGE);
@@ -53,6 +64,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ProductMalformatException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponse> handleProductMalformed(ProductMalformatException exception) {
+        LOG.error(exception.getLocalizedMessage());
+
         ErrorResponse errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 ERROR_MESSAGE);
