@@ -6,3 +6,7 @@ spring:
       database: product
       host: mongo-db
       port: 27017
+jwt:
+  token:
+    validity: 3600
+  secret: sign_token
