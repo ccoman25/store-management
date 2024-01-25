@@ -13,7 +13,7 @@ public class LoginService {
 
     //Hard coded login setup for JWT showcase
     public Optional<Integer> login(UserDTO userDTO) {
-        String password = userMap.get(userDTO.username());
+        var password = userMap.get(userDTO.username());
 
         if(password != null && password.equals(userDTO.password())){
             return Optional.of(1);

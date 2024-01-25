@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValid(MethodArgumentNotValidException exception) {
         LOG.error(exception.getLocalizedMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
+        var errorResponse = new ErrorResponse(
                 HttpStatus.UNPROCESSABLE_ENTITY.value(),
                 ERROR_MESSAGE);
 
@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleHttpMessageNotReadable(HttpMessageNotReadableException exception) {
         LOG.error(exception.getLocalizedMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
+        var errorResponse = new ErrorResponse(
                 HttpStatus.UNPROCESSABLE_ENTITY.value(),
                 ERROR_MESSAGE);
         errorResponse.addValidationError("id", exception.getLocalizedMessage());
@@ -53,7 +53,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleHttpNotFound(ProductNotFoundException exception) {
         LOG.error(exception.getLocalizedMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
+        var errorResponse = new ErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
                 ERROR_MESSAGE);
         errorResponse.addValidationError("id", exception.getLocalizedMessage());
@@ -66,7 +66,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleProductMalformed(ProductMalformatException exception) {
         LOG.error(exception.getLocalizedMessage());
 
-        ErrorResponse errorResponse = new ErrorResponse(
+        var errorResponse = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 ERROR_MESSAGE);
         errorResponse.addValidationError("category", exception.getLocalizedMessage());

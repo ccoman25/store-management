@@ -28,11 +28,11 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            final String token = request.getHeader("Authorization");
+            final var token = request.getHeader("Authorization");
 
             if (token != null && token.startsWith("Bearer ") ) {
-                String tokenWithoutBearer = token.substring(7);
-                Authentication authentication = jwtTokenService.getAuthentication(tokenWithoutBearer);
+                var tokenWithoutBearer = token.substring(7);
+                var authentication = jwtTokenService.getAuthentication(tokenWithoutBearer);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception e){

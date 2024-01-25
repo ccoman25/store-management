@@ -1,6 +1,5 @@
 package com.store.management.tool.storemanagementtool.service;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,10 +39,10 @@ public class JwtTokenService implements Serializable {
     }
 
     public Authentication getAuthentication(String token) {
-        Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        var claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 
-        int userId = Integer.parseInt(claims.getSubject());
-        String role = claims.get("role", String.class);
+        var userId = Integer.parseInt(claims.getSubject());
+        var role = claims.get("role", String.class);
 
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
