@@ -11,7 +11,6 @@ public class LoginService {
 
     Map<String, String> userMap = new HashMap<>(Map.of("user", "password", "admin", "admin"));
 
-    //Hard coded login setup for JWT showcase
     public Optional<Integer> login(UserDTO userDTO) {
         var password = userMap.get(userDTO.username());
 

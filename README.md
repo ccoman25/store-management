@@ -14,7 +14,7 @@ Source code: `https://github.com/ccoman25/store-management`
   * Delete product `[DELETE] http://host:port/api/product/{id}`
   
 * #### Error handling mechanism
- The main objective of this mechanism is to provide a means to detect and report an error so that the program can either handle it and continue or terminate gracefully.
+ The main objective of this mechanism is to provide a means to detects and reports an error so that the program can either handle it and continue or terminate gracefully.
 In this API the following errors were handled:
 
 1. MethodArgumentNotValidException
@@ -22,7 +22,7 @@ In this API the following errors were handled:
 3. ProductNotFoundException
 4. ProductMalformatException
 
-Class `GlobalExceptionHandler` handles those exceptions. It expose a clear message to the client when something unexpected occurred.
+`GlobalExceptionHandler` handles those exceptions. It exposes a clear message to the client when something unexpected occurred.
 
 Example of request with validation error that was handled.
 
@@ -70,8 +70,8 @@ Response body:
 ```
 
 * #### Logging
-The logging mechanism was implemented using SLf4j and Logback.
-The logs are redirected through console and a file if the application is running outside of a container,
+Logging is done with SLF4j and Logback.
+The logs are redirected to console and a file if the application is running outside of a container,
 otherwise the logs will be redirected to the console (`logback.xml`)
 
 * #### Basic authentication mechanism and role based endpoint access
@@ -106,7 +106,7 @@ Response body: A token
 `ProductService` contains unit test methods using Mockito.
   
 * #### Run and deploy the Store Management Tool Application
-The Docker is used for creating containers for MongoDB and Store Management Application.
+Docker is used for creating containers for MongoDB and Store Management Application.
 Steps to run the app:
 1. install docker compose
 2. Create Dockerfile - jar app info
