@@ -83,15 +83,15 @@ otherwise the logs will be redirected to the console (`logback.xml`)
     Request body:
 ```
 {
-    "username": "admin",
-    "password": "admin"
+    "username": "cristina",
+    "password": "pass1"
 }
 
 OR
 
 {
-    "username": "user",
-    "password": "password"
+    "username": "stelian",
+    "password": "pass2"
 }
 ```
 Response body: A token
@@ -102,7 +102,20 @@ Response body: A token
 
   The token will be used as an `Authorization` header for all requests.
 
-  * #### Unit test
+3. Two roles implemented:
+   * `cristina` - `USER` role
+   * `stelian` - `ADMIN` role
+
+4. Endpoints role:
+   * `[GET]/findAll` - `USER` role
+   * `[GET]/category/{category}` - `USER` role
+   * `[GET]/id/{id}` - `USER` role
+   * `[PUT]/{id}` - `USER` role
+   * `[POST]/insert` - `ADMIN` role
+   * `[DELETE]/{id}` - `ADMIN` role
+   
+    `403` exception is thrown if an user tries to access an endpoint with other role.
+* #### Unit test
 `ProductService` contains unit test methods using Mockito.
   
 * #### Run and deploy the Store Management Tool Application
